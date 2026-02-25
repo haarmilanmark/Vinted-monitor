@@ -18,7 +18,7 @@ jobs:
 
       - run: pip install requests
 
-      - name: Run monitor
+      - name: Run Vinted monitor
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: python monitor.py
