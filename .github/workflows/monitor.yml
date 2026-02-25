@@ -1,0 +1,24 @@
+name: Vinted Monitor
+
+on:
+  schedule:
+    - cron: "*/2 * * * *"  # 2 percenként fut
+  workflow_dispatch:       # manuális futtatás lehetősége
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - run: pip install requests
+
+      - name: Run monitor
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: python monitor.py
